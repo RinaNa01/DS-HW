@@ -1,0 +1,249 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "1adeab77-8304-4301-8bfe-1fecc91e5bbd",
+   "metadata": {},
+   "source": [
+    "# DS개론 JBN 과제\n",
+    " ```202001202, 프랑스학과, 나리나```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 136,
+   "id": "666801ed-617b-418c-b2cb-50741cb608ed",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Node 클래스 정의\n",
+    "class Node:\n",
+    "    def __init__(self, data):\n",
+    "        self.data = data\n",
+    "        self.next = None\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 137,
+   "id": "b8f53167-6325-4b80-8c31-7343fdd92d5a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# LinkedList 클래스 정의\n",
+    "class LinkedList:\n",
+    "\n",
+    "    # 초기화 메소드\n",
+    "    def __init__(self):\n",
+    "        dummy = Node(\"dummy\")\n",
+    "        self.head = dummy\n",
+    "        self.tail = dummy\n",
+    "\n",
+    "        self.current = None\n",
+    "        self.before = None\n",
+    "\n",
+    "        self.num_of_data = 0"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 251,
+   "id": "dba095fd-7d6d-4d0f-ba64-2ea110700cd4",
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# traverse_all 메소드   \n",
+    "    \n",
+    "def append(self):\n",
+    "        if self.num_of_data == 0:\n",
+    "            return None\n",
+    "        \n",
+    "        self.current = self.head\n",
+    "        while self.current.next is not None: #현재 값이 끝날 때까지 이동하려함\n",
+    "            self.current = self.current.next\n",
+    "            self.current.next = Node(data)\n",
+    "        \n",
+    "        return self.current.next\n",
+    "\n",
+    "mylist = [100, 72, 325]\n",
+    "            \n",
+    "mylist.append(100)       \n",
+    "mylist.append(72) #100에서 75로 노드를 연결함\n",
+    "mylist.append(325) #72에서 325로 노드를 연결함\n",
+    "\n",
+    "def traverse_all(self):\n",
+    "    self.current = self.head\n",
+    "    while self.current is not None:\n",
+    "        print(self.current.data)\n",
+    "        self.current = self.current.next\n",
+    "        \n",
+    "        return mylist"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 244,
+   "id": "dbbb423e-dd15-4c4e-8b6c-673fc14d48c6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # append 메소드 (insert - 맨 뒤에 노드 추가, tail과 node의 next, 데이터 개수 변경)\n",
+    "    def append(self, data):\n",
+    "        new_node = Node(data)\n",
+    "        self.tail.next = new_node #처음 등장한 head는 내용이 없어 \n",
+    "        self.tail = new_node\n",
+    "        self.num_of_data += 1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 245,
+   "id": "093d7a5a-489c-4d64-b072-dd9c0b5f6370",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    #insert_at 메소드(리스트의 주어진 위치에 new_data) 삽입하기\n",
+    "    def insert_at(self, i):\n",
+    "        if self.head is None:\n",
+    "            print(\"error\") #0이하의 position의 값이 입력되면 error\n",
+    "        elif i >= self.length:\n",
+    "            self.append(data)\n",
+    "        else:\n",
+    "            prev = sellf.head\n",
+    "            for _ in range(i-1):\n",
+    "                prev = prev.next\n",
+    "                data = new_data\n",
+    "            new_node = Node(data)\n",
+    "            node.next = prev.next\n",
+    "            prev.next = node\n",
+    "            self.length += 1 #Node를 한 개씩 이동한다"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 246,
+   "id": "8bcf09f9-77a4-475a-9fbc-e2b5389ebccc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # delete 메소드 (해쉬테이블을 이용)\n",
+    "    def delete(self):\n",
+    "        pop_data = self.current.data\n",
+    "\n",
+    "        if self.current is self.tail:\n",
+    "            self.tail = self.before\n",
+    "\n",
+    "            # 중요 : current가 next가 아닌 before로 변경된다.\n",
+    "            self.before.next = self.current.next\n",
+    "            self.current = self.before \n",
+    "\n",
+    "            self.num_of_data -= 1\n",
+    "\n",
+    "            return pop_data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 253,
+   "id": "b709e324-b639-4afe-84ce-8b5a19989e2a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # remove 메소드\n",
+    "    def remove(self):\n",
+    "        key = self.search\n",
+    "        if key == 100 or key == 72 or key == 325: #key값이 없을 경우 나열\n",
+    "            self.remove()\n",
+    "            print(key, \"번째 원소(key)를 삭제합니다.\")\n",
+    "        \n",
+    "        else:\n",
+    "            print(\"해당하는 원소가 없습니다.\")\n",
+    "        \n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 254,
+   "id": "14acce88-72e6-4b4a-8a7f-a843cd3e0446",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # first 메소드 (search1 - 맨 앞의 노드 검색, before, current 변경)\n",
+    "    def first(self):\n",
+    "        # 데이터가 없는 경우 첫번째 노드도 없기 때문에 None 리턴\n",
+    "        if self.num_of_data == 0: \n",
+    "            return None\n",
+    "\n",
+    "        self.before = self.head\n",
+    "        self.current = self.head.next\n",
+    "\n",
+    "        return self.current.data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 255,
+   "id": "ac268cc4-60c0-4934-bd5f-ae0977fa41dc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # next 메소드 (search2 - current 노드의 다음 노드 검색, 이전에 first 메소드가 한번은 실행되어야 함)\n",
+    "    def next(self):\n",
+    "        if self.current.next == None:\n",
+    "            return None\n",
+    "\n",
+    "        self.before = self.current\n",
+    "        self.current = self.current.next\n",
+    "\n",
+    "        return self.current.data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 256,
+   "id": "0cc42134-daed-4ff8-900e-945c977630a7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # size 메소드\n",
+    "    def size(self):\n",
+    "        return self.num_of_data "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9d88d61a-1ff8-4b85-acbc-367307ae5416",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.13"
+  },
+  "toc-autonumbering": true,
+  "toc-showcode": false,
+  "toc-showmarkdowntxt": false
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
