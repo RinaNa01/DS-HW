@@ -1,0 +1,199 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "1adeab77-8304-4301-8bfe-1fecc91e5bbd",
+   "metadata": {},
+   "source": [
+    "# DS개론 JBN 과제\n",
+    " ```202001202, 프랑스학과, 나리나```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "666801ed-617b-418c-b2cb-50741cb608ed",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Node 클래스 정의\n",
+    "class Node:\n",
+    "    def __init__(self, data):\n",
+    "        self.data = data\n",
+    "        self.next = None1 "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "b8f53167-6325-4b80-8c31-7343fdd92d5a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# LinkedList 클래스 정의\n",
+    "class LinkedList:\n",
+    "\n",
+    "    # 초기화 메소드\n",
+    "    def __init__(self):\n",
+    "        dummy = Node(\"dummy\")\n",
+    "        self.head = dummy\n",
+    "        self.tail = dummy\n",
+    "\n",
+    "        self.current = None\n",
+    "        self.before = None\n",
+    "\n",
+    "        self.num_of_data = 0"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "dbbb423e-dd15-4c4e-8b6c-673fc14d48c6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # append 메소드 (insert - 맨 뒤에 노드 추가, tail과 node의 next, 데이터 개수 변경)\n",
+    "    def append(self, data):\n",
+    "        new_node = Node(data)\n",
+    "        self.tail.next = new_node #처음 등장한 head는 내용이 없어 \n",
+    "        self.tail = new_node\n",
+    "        self.num_of_data += 1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "093d7a5a-489c-4d64-b072-dd9c0b5f6370",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    #insert_at 메소드(리스트의 주어진 위치에 new_data) 삽입하기\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "8bcf09f9-77a4-475a-9fbc-e2b5389ebccc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # delete 메소드 (delete - current 노드 삭제, 인접 노드의 current, next 변경, 데이터 개수 변경)\n",
+    "    def delete(self):\n",
+    "        pop_data = self.current.data\n",
+    "\n",
+    "        if self.current is self.tail:\n",
+    "            self.tail = self.before\n",
+    "\n",
+    "            # 중요 : current가 next가 아닌 before로 변경된다.\n",
+    "            self.before.next = self.current.next\n",
+    "            self.current = self.before \n",
+    "\n",
+    "            self.num_of_data -= 1\n",
+    "\n",
+    "            return pop_data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "14acce88-72e6-4b4a-8a7f-a843cd3e0446",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # first 메소드 (search1 - 맨 앞의 노드 검색, before, current 변경)\n",
+    "    def first(self):\n",
+    "        # 데이터가 없는 경우 첫번째 노드도 없기 때문에 None 리턴\n",
+    "        if self.num_of_data == 0: \n",
+    "            return None\n",
+    "\n",
+    "        self.before = self.head\n",
+    "        self.current = self.head.next\n",
+    "\n",
+    "        return self.current.data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "ac268cc4-60c0-4934-bd5f-ae0977fa41dc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # next 메소드 (search2 - current 노드의 다음 노드 검색, 이전에 first 메소드가 한번은 실행되어야 함)\n",
+    "    def next(self):\n",
+    "        if self.current.next == None:\n",
+    "            return None\n",
+    "\n",
+    "        self.before = self.current\n",
+    "        self.current = self.current.next\n",
+    "\n",
+    "        return self.current.data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "0cc42134-daed-4ff8-900e-945c977630a7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # size 메소드\n",
+    "    def size(self):\n",
+    "        return self.num_of_data "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "1f41add8-4193-4a46-b096-d9e21056ccad",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "IndentationError",
+     "evalue": "unindent does not match any outer indentation level (<tokenize>, line 7)",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;36m  File \u001b[1;32m\"<tokenize>\"\u001b[1;36m, line \u001b[1;32m7\u001b[0m\n\u001b[1;33m    print((self.current), '->', end='')\u001b[0m\n\u001b[1;37m    ^\u001b[0m\n\u001b[1;31mIndentationError\u001b[0m\u001b[1;31m:\u001b[0m unindent does not match any outer indentation level\n"
+     ]
+    }
+   ],
+   "source": [
+    "    # traverse_all메소드 (노드 순차적 탐색)\n",
+    "    \n",
+    "def traverse_all(self):\n",
+    "    self.current = self.head #head 조회\n",
+    "    while self.current:\n",
+    "                if self.current.next ! = None: #self.current가 None이 아닐 경우 계속함\n",
+    "            print((self.current), '->', end='')\n",
+    "        else:\n",
+    "            print(Null)\n",
+    "        self.current = self.current.next"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.13"
+  },
+  "toc-autonumbering": true,
+  "toc-showcode": false,
+  "toc-showmarkdowntxt": false
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
